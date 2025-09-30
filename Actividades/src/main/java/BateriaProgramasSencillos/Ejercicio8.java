@@ -7,16 +7,22 @@ public class Ejercicio8 {
 
     public static void main(String[] args) {
         System.out.println("Introduce los lados del triángulo:");
+        int lado1 = 0;
+        int lado2 = 0;
+        int lado3 = 0;
+        try {
+            System.out.print("Lado1: ");
+            lado1 = entrada.nextInt();
 
-        System.out.print("Lado1: ");
-        int lado1 = entrada.nextInt();
+            System.out.print("Lado2: ");
+            lado2 = entrada.nextInt();
 
-        System.out.print("Lado2: ");
-        int lado2 = entrada.nextInt();
-
-        System.out.print("Lado3: ");
-        int lado3 = entrada.nextInt();
-
+            System.out.print("Lado3: ");
+            lado3 = entrada.nextInt();
+        }catch (Exception e) {
+            System.out.println("ERROR: Debes introducir un numero valido");
+            return;
+        }
 
         if (lado1 + lado2 > lado3 && lado1 + lado3 > lado2 && lado2 + lado3 > lado1) {
             if (lado1 == lado2 && lado2 == lado3) {
