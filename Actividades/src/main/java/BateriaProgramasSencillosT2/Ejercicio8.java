@@ -1,4 +1,4 @@
-package BateriaProgramasSencillos;
+package BateriaProgramasSencillosT2;
 
 import java.util.Scanner;
 
