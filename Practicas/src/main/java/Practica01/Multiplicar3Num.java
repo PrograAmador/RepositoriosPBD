@@ -1,4 +1,4 @@
-package Practica4;
+package Practica01;
 import java.util.Scanner;
 public class Multiplicar3Num {
     static Scanner entrada = new Scanner(System.in);
