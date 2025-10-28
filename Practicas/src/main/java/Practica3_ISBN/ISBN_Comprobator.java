@@ -27,6 +27,10 @@ public class ISBN_Comprobator {
                 // Comprobar si un ISBN-10 es válido
                 System.out.print("Introduzca el ISBN a comprobar: ");
                 String ISBN = entrada.next();
+                if(ISBN.length() != 10){
+                    System.out.println("Error: El ISBN debe tener 10 caracteres. Saliendo del programa.");
+                    return;
+                }
                 for (int i = 0; i < ISBN.length(); i++) {
 
                     if (ISBN.charAt(i) == 'X') {
@@ -50,6 +54,10 @@ public class ISBN_Comprobator {
                 int operacion2 = 0;
                 System.out.print("Introduzca el ISBN a reparar: ");
                 String reparador = entrada.next();
+                if(reparador.length() != 10){
+                    System.out.println("Error: El ISBN debe tener 10 caracteres. Saliendo del programa.");
+                    return;
+                }
                 for (int i = 0; i < 10; i++) {
                     char c = reparador.charAt(i);
                     if (c == '?') {
