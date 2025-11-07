@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class StreamerStatsChallenge {
+    public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+
+        System.out.println("*** ESTADISTICAS PREMIOS ESLAND ***");
+        System.out.println("---------------------------------");
+        System.out.print("Inserta streamer a analizar: ");
+        String streamer = entrada.nextLine();
+        System.out.println("Inserta los espectadores medidos: ");
+
+        int[] espectadores = new int[5];
+        for (int i = 0; i < espectadores.length; i++) {
+            espectadores[i] = entrada.nextInt();
+        }
+
+        // Inicializar mayor y menor
+        int mayor = espectadores[0];
+        int menor = espectadores[0];
+        for (int i = 1; i < espectadores.length; i++) {
+            if (espectadores[i] > mayor) {
+                mayor = espectadores[i];
+            }
+            if (espectadores[i] < menor) {
+                menor = espectadores[i];
+            }
+        }
+
+        System.out.println("Inserta el número de comentarios: ");
+        int[] comentarios = new int[5];
+        for (int h = 0; h < comentarios.length; h++) {
+            comentarios[h] = entrada.nextInt();
+        }
+        entrada.close();
+
+        // Calcular el ratio más alto ("HYPE")
+        double mayor2 = (double) comentarios[0] / espectadores[0];
+        int hype = 0;
+        for (int j = 1; j < espectadores.length; j++) {
+            double ratio = (double) comentarios[j] / espectadores[j];
+            if (ratio > mayor2) {
+                mayor2 = ratio;
+                hype = j;
+            }
+        }
+
+        double racha = ((double) ((mayor - menor) * 100) / mayor);
+
+        System.out.println("---------------------------------------------------");
+        System.out.println("Resultados para el streamer: ");
+        System.out.println("@" + streamer);
+        System.out.println("MAX=" + mayor);
+        System.out.println("HYPE= día " + hype + " (" + mayor2 + ")");
+        System.out.println("RACHA=" + racha + "%");
+    }
+}
