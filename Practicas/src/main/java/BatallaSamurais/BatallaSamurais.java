@@ -4,18 +4,18 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class BatallaSamurais {
-    public void iniciarCombate() {
+    public static void main(String[] args){
         Scanner entrada = new Scanner(System.in);
-        Random azar = new Random();
+        Random random = new Random();
 
         int cantidadEquipos = 2;
         int[] fuerzaEquipoA = new int[7];
         int[] fuerzaEquipoB = new int[7];
         int totalPotencia;
-        boolean entradaValida;
+        int poder;
         // Bucle para registrar la potencia de ambos equipos
         for (int equipo = 1; equipo <= cantidadEquipos; equipo++) {
-            System.out.println("Configurando Equipo " + equipo);
+            System.out.println("Equipo " + equipo);
 
 
             do {
@@ -23,15 +23,19 @@ public class BatallaSamurais {
                 String linea = entrada.nextLine();
                 String[] valores = linea.trim().split(" ");
                 totalPotencia = 0;
-                entradaValida = true;
+
                 if (valores.length != 7) {
-                    System.out.println("Debes introducir exactamente 7 valores.");
-                    continue; // vuelve a pedir la entrada
+                    System.out.println("Error. Debes introducir exactamente 7 valores.");
+                    continue;
                 }
 
                 try {
                     for (int i = 0; i < 7; i++) {
-                        int poder = Integer.parseInt(valores[i]);
+                        poder = Integer.parseInt(valores[i]);
+                        if (poder < 0) {
+                            System.out.println("Error. Las fuerzas no pueden ser negativas.");
+                            return;
+                        }
                         totalPotencia += poder;
 
                         if (equipo == 1) {
@@ -41,12 +45,9 @@ public class BatallaSamurais {
                         }
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("Debes introducir solo números válidos.");
-                    entradaValida = false;
-                    break;
+                    System.out.println("Error. Debes introducir solo números válidos.");
+                    return;
                 }
-
-                if(!entradaValida) continue; // Si hubo texto no numérico, vuelve a pedir toda la línea
 
                 if (totalPotencia != 30) {
                     System.out.println("Error: reparte exactamente 30 puntos entre tus 7 samuráis.");
@@ -54,13 +55,13 @@ public class BatallaSamurais {
 
             } while (totalPotencia != 30);
 
-            System.out.println("Equipo " + equipo + " configurado correctamente.");
+            System.out.println("Equipo " + equipo + " completado.");
         }
 
         // Determinar el primer enfrentamiento de forma aleatoria
-        int inicio = azar.nextInt(7);
-        System.out.println("¡La batalla comienza!");
-        System.out.println("El primer combate será con el Samurái número " + (inicio + 1));
+        int inicio = random.nextInt(7);
+        System.out.println("¡EMPIEZA LA BATALLA!");
+        System.out.println("La batalla inicia con el Samurai " + (inicio + 1));
 
         int derrotasA = 0;
         int derrotasB = 0;
