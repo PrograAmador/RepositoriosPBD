@@ -7,18 +7,27 @@ public class Ej4 {
     static Scanner entrada = new Scanner(System.in);
     public static void main(String[] args) {
 
+        INPUT();
+        System.out.println(MasVentas(INPUT()) + MenosVentas(INPUT()) + RecaudacionDomingo(INPUT()));
+
     }
-    public static void INPUT() {
+    public static String[] INPUT() {
         System.out.print("Introduce la recaudacion de la semana: ");
         String recaudacion;
-        String[] partes;
-        do {
-            recaudacion = entrada.nextLine();
-            partes = recaudacion.split("\\.");
+        String[] partes = new String[6];
+        int contador = 0;
 
-        } while (!recaudacion.equals("-1"));
+        while (true) {
+            recaudacion = entrada.nextLine();
+            if (recaudacion.equals("-1")){
+                break;
+            }
+            partes[contador] = recaudacion;
+            contador++;
+        }
 
         System.out.println(Arrays.toString(partes));
+        return partes;
     }
     public static String MasVentas(String[] partes) {
         int max = 0;
@@ -32,17 +41,17 @@ public class Ej4 {
         }
         String diaSemana = "";
         if(dia == 1){
-            diaSemana = "LUNES";
-        }else if(dia == 2) {
             diaSemana = "MARTES";
-        }else if(dia == 3) {
+        }else if(dia == 2) {
             diaSemana = "MIERCOLES";
-        }else if(dia == 4) {
+        }else if(dia == 3) {
             diaSemana = "JUEVES";
-        }else if(dia == 5) {
+        }else if(dia == 4) {
             diaSemana = "VIERNES";
-        }else if(dia == 6) {
+        }else if(dia == 5) {
             diaSemana = "SABADO";
+        }else if(dia == 6) {
+            diaSemana = "DOMINGO";
         }
         return diaSemana;
     }
