@@ -1,4 +1,4 @@
-package EjStatics;
+package ClasesRelaciones;
 
 public class Estudiante {
 
@@ -9,12 +9,14 @@ public class Estudiante {
     private String curso;
     private int NIA;
     private String email;
+    private Libro libro;
 
-    public Estudiante(String nombre, String curso, String email){
+    public Estudiante(String nombre, String curso, String email, Libro libro) {
         this.nombre = nombre;
         this.curso = curso;
         this.email = email;
         NIA = contadorEstudiantes + 1;
+        this.libro = libro;
     }
     public Estudiante(String nombre){
         this.nombre = nombre;
@@ -29,6 +31,14 @@ public class Estudiante {
         }else{
             return false;
         }
+    }
+
+    public Libro getLibro() {
+        return libro;
+    }
+
+    public void setLibro(Libro libro) {
+        this.libro = libro;
     }
 
     public int getNIA() {
@@ -63,6 +73,7 @@ public class Estudiante {
                 ", curso='" + curso + '\'' +
                 ", NIA=" + NIA +
                 ", email='" + email + '\'' +
+                ", libro=" + libro.getTitulo() +
                 '}';
     }
 }

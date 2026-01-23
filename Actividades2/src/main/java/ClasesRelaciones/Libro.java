@@ -1,4 +1,4 @@
-package EjStatics;
+package ClasesRelaciones;
 
 public class Libro {
 
@@ -10,25 +10,33 @@ public class Libro {
     private String autor;
     private String id;
     private boolean disponible;
+    private Estudiante estudiantePrestado;
+    private Editorial editorial;
 
 
-    public Libro(String titulo, String autor) {
+    public Libro(String titulo, String autor, Editorial editorial) {
         this.titulo = titulo;
         this.autor = autor;
         disponible = true;
         cantidadLibros++;
         librosDisponibles++;
         id = calcularId();
+        estudiantePrestado = null;
+        this.editorial = editorial;
     }
     private String calcularId() {
         return PREFIJO_ID + cantidadLibros ;
     }
-    public String prestar() {
+    public String prestar(Estudiante estudiante) {
         if (disponible) {
             disponible = false;
             librosDisponibles--;
+            estudiantePrestado = estudiante;
+            estudiante.setLibro(this);
             return "El libro ha sido prestado con éxito.";
-        } else {
+        } else if(estudiantePrestado != null) {
+            return "El libro " + titulo + " ya está prestado a " + estudiantePrestado.getNombre() + ".";
+        }else{
             return "El libro " + titulo + " no está disponible para préstamo.";
         }
     }
@@ -36,6 +44,8 @@ public class Libro {
         if (!disponible) {
             disponible = true;
             librosDisponibles++;
+            estudiantePrestado = null;
+            estudiantePrestado.setLibro(null);
             return "El libro ha sido devuelto con éxito.";
         } else {
             return "El libro " + titulo + " ya estaba disponible.";
@@ -49,6 +59,21 @@ public class Libro {
     }
     public static int getLibrosDisponibles() {
         return librosDisponibles;
+    }
+
+    public Estudiante getEstudiantePrestado() {
+        return estudiantePrestado;
+    }
+    public Editorial getEditorial() {
+        return editorial;
+    }
+
+    public void setEditorial(Editorial editorial) {
+        this.editorial = editorial;
+    }
+
+    public void setEstudiantePrestado(Estudiante estudiantePrestado) {
+        this.estudiantePrestado = estudiantePrestado;
     }
     public String getId() {
         return id;
@@ -75,7 +100,13 @@ public class Libro {
     }
     @Override
     public String toString() {
-        return " Total de libros creados: " + cantidadLibros + "\n Libros disponibles: " + librosDisponibles
-                + "\n " + prestar() + "\n Libros disponibles despues del prestamo:" + librosDisponibles  + "\n "+ devolver() + "\n Libros disponibles después de la devolución: " +librosDisponibles;
+        return "Libro{" +
+                "titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", id='" + id + '\'' +
+                ", disponible=" + disponible +
+                ", estdudiante= " + estudiantePrestado+
+                ", editorial= " + editorial +
+                '}';
     }
 }
