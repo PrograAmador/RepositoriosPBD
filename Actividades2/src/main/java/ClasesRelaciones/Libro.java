@@ -27,18 +27,22 @@ public class Libro {
     private String calcularId() {
         return PREFIJO_ID + cantidadLibros ;
     }
-    public String prestar(Estudiante estudiante) {
-        if (disponible) {
+    public Prestamo prestar(Estudiante estudiante) {
+        Prestamo prestamo = null;
+        if (disponible && estudiante.getLibro() == null ) {
             disponible = false;
             librosDisponibles--;
             estudiantePrestado = estudiante;
             estudiante.setLibro(this);
-            return "El libro ha sido prestado con éxito.";
+            prestamo = new Prestamo(this, estudiante);
+            System.out.println("El libro ha sido prestado con éxito.");
+            return prestamo;
         } else if(estudiantePrestado != null) {
-            return "El libro " + titulo + " ya está prestado a " + estudiantePrestado.getNombre() + ".";
+            System.out.println( "El libro " + titulo + " ya está prestado a " + estudiantePrestado.getNombre() + ".");
         }else{
-            return "El libro " + titulo + " no está disponible para préstamo.";
+            System.out.println( titulo + " no está disponible para préstamo.");
         }
+        return prestamo;
     }
     public String devolver() {
         if (!disponible) {

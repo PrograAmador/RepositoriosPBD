@@ -1,5 +1,7 @@
 package ClasesRelaciones;
 
+import java.util.ArrayList;
+
 public class Estudiante {
 
     private static int contadorEstudiantes = 0;
@@ -10,6 +12,7 @@ public class Estudiante {
     private int NIA;
     private String email;
     private Libro libro;
+    private ArrayList<Libro> listaLibrosPrestados;
 
     public Estudiante(String nombre, String curso, String email, Libro libro) {
         this.nombre = nombre;
@@ -17,9 +20,16 @@ public class Estudiante {
         this.email = email;
         NIA = contadorEstudiantes + 1;
         this.libro = libro;
+        listaLibrosPrestados = new ArrayList<>();
     }
     public Estudiante(String nombre){
         this.nombre = nombre;
+    }
+    public void anyadirLibro(Libro libro){
+        listaLibrosPrestados.add(libro);
+    }
+    public void borrarLibro(Libro libro){
+        listaLibrosPrestados.remove(libro);
     }
 
     private static int obtenerTotalEstudiantes(){
@@ -64,6 +74,13 @@ public class Estudiante {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+    public ArrayList<Libro> getListaLibrosPrestados() {
+        return listaLibrosPrestados;
+    }
+
+    public void setListaLibrosPrestados(ArrayList<Libro> listaLibrosPrestados) {
+        this.listaLibrosPrestados = listaLibrosPrestados;
     }
 
     @Override

@@ -29,7 +29,7 @@
 - 🎓 Estudiante de **Grado Superior en Desarrollo de Aplicaciones Multiplataforma (2024–2026)**
 - 🌍 Idiomas:
   - Español: Nativo
-  - Inglés: C1 Avanzado
+  - Inglés: C1 Avanzadosd
   - Francés: B2 Intermedio
 - 💡 Interesado en programación, bases de datos e inteligencia artificial
 - 🚀 En constante aprendizaje y mejora profesional
