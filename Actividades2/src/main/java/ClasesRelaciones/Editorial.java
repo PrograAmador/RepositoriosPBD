@@ -1,16 +1,41 @@
 package ClasesRelaciones;
 
+import java.util.ArrayList;
+
+
 public class Editorial {
 
     private String nombre;
     private String pais;
+    private ArrayList<Libro> listaLibrosPublicados;
 
     public Editorial(String nombre, String pais) {
         this.nombre = nombre;
         this.pais = pais;
+        this.listaLibrosPublicados = new ArrayList<>();
     }
-    public Editorial(){
+
+    public void anyadirLibro(Libro libro){
+        for(Libro l : listaLibrosPublicados){
+            if(l.getTitulo().equalsIgnoreCase(libro.getTitulo())){
+                System.out.println("El libro " + libro.getTitulo() + " ya existe en la editorial.");
+                return;
+            }else {
+                listaLibrosPublicados.add(libro);
+            }
+        }
     }
+    public void borrarLibro(Libro libro){
+        listaLibrosPublicados.remove(libro);
+    }
+
+    public ArrayList<Libro> getListaLibrosPublicados() {
+        return listaLibrosPublicados;
+    }
+    public void setListaLibrosPublicados(ArrayList<Libro> listaLibrosPublicados) {
+        this.listaLibrosPublicados = listaLibrosPublicados;
+    }
+
 
     public String getNombre() {
         return nombre;
@@ -33,6 +58,7 @@ public class Editorial {
         return "Editorial{" +
                 "nombre='" + nombre + '\'' +
                 ", pais='" + pais + '\'' +
+                ", listaLibrosEditorial=" + listaLibrosPublicados +
                 '}';
     }
 

@@ -26,7 +26,14 @@ public class Estudiante {
         this.nombre = nombre;
     }
     public void anyadirLibro(Libro libro){
-        listaLibrosPrestados.add(libro);
+        for(Libro l : listaLibrosPrestados){
+            if(l.getTitulo().equalsIgnoreCase(libro.getTitulo())){
+                System.out.println("El libro " + libro.getTitulo() + " ya está prestado a " + nombre + ".");
+                return;
+            }else {
+                listaLibrosPrestados.add(libro);
+            }
+        }
     }
     public void borrarLibro(Libro libro){
         listaLibrosPrestados.remove(libro);
@@ -91,6 +98,7 @@ public class Estudiante {
                 ", NIA=" + NIA +
                 ", email='" + email + '\'' +
                 ", libro=" + libro.getTitulo() +
-                '}';
+                ", listaLibrosPrestados=" + listaLibrosPrestados
+                ;
     }
 }

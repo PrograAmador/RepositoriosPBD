@@ -23,17 +23,19 @@ public class Libro {
         id = calcularId();
         estudiantePrestado = null;
         this.editorial = editorial;
+        editorial.anyadirLibro(this);
     }
     private String calcularId() {
         return PREFIJO_ID + cantidadLibros ;
     }
     public Prestamo prestar(Estudiante estudiante) {
         Prestamo prestamo = null;
-        if (disponible && estudiante.getLibro() == null ) {
+        if (disponible ) {
+
             disponible = false;
             librosDisponibles--;
             estudiantePrestado = estudiante;
-            estudiante.setLibro(this);
+            estudiante.anyadirLibro(this);
             prestamo = new Prestamo(this, estudiante);
             System.out.println("El libro ha sido prestado con éxito.");
             return prestamo;
@@ -48,8 +50,7 @@ public class Libro {
         if (!disponible) {
             disponible = true;
             librosDisponibles++;
-            estudiantePrestado = null;
-            estudiantePrestado.setLibro(null);
+            estudiantePrestado.borrarLibro(this);
             return "El libro ha sido devuelto con éxito.";
         } else {
             return "El libro " + titulo + " ya estaba disponible.";
