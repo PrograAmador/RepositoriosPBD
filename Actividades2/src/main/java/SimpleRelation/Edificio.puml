@@ -1,0 +1,45 @@
+@startuml
+package SimpleRelation {
+
+class Electrodomestico {
+    - nombre : String
+    - consumo : double
+    --
+    + Electrodomestico(nombre : String, consumo : double)
+    + getNombre() : String
+    + setNombre(nombre : String) : void
+    + getConsumo() : double
+    + setConsumo(consumo : double) : void
+}
+
+class Habitacion {
+    - nombre : String
+    - metros : double
+    - listaElectrodomesticos : ArrayList<Electrodomestico>
+    --
+    + Habitacion(nombre : String, metros : double)
+    - agregarElectrodomestico(e : Electrodomestico) : void
+    - eliminarElectrodomestico(e : Electrodomestico) : void
+}
+
+class Casa {
+    - direccion : String
+    - listaHabitaciones : ArrayList<Habitacion>
+    - propietario : Propietario
+    --
+    + Casa(direccion : String)
+    + crearHabitacion(nombre : String, metros : double) : void
+    + eliminarHabitacion(nombre : String) : void
+    + mostrarHabitaciones() : void
+    + getHabitacionMasGrande() : Habitacion
+    + setPropietario() : void
+}
+
+
+' Relaciones
+Casa "1" *-- "1..*" Habitacion
+Habitacion "1" *-- "0..*" Electrodomestico
+
+}
+
+@enduml

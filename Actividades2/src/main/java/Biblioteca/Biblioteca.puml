@@ -1,0 +1,69 @@
+@startuml
+package ClasesRelaciones {
+
+class Estudiante {
+    - contadorEstudiantes : int
+    - CORREO_FORMAT : String
+    --
+    - nombre : String
+    - curso : String
+    - NIA : int
+    - email : String
+    - libro : Libro
+    - listaLibrosPrestados : ArrayList<Libro>
+    --
+    + Estudiante(nombre : String, curso : String, email : String, libro : Libro)
+    + Estudiante(nombre : String)
+    + anyadirLibro(libro : Libro) : void
+    + borrarLibro(libro : Libro) : void
+    - obtenerTotalEstudiantes() : int
+    - validarCorreo(email : String) : boolean
+}
+
+class Libro {
+    - cantidadLibros : int
+    - librosDisponibles : int
+    - PREFIJO_ID : String
+    --
+    - titulo : String
+    - autor : String
+    - id : String
+    - disponible : boolean
+    - estudiantePrestado : Estudiante
+    - editorial : Editorial
+    --
+    + Libro(titulo : String, autor : String, editorial : Editorial)
+    - calcularId() : String
+    + prestar(estudiante : Estudiante) : Prestamo
+    + devolver() : String
+    + estaDisponible() : boolean
+    + getTotalLibros() : int
+    + getLibrosDisponibles() : int
+}
+
+class Prestamo {
+    - libro : Libro
+    - estudiante : Estudiante
+    - fecha : LocalDateTime
+    --
+    + Prestamo(libro : Libro, estudiante : Estudiante)
+}
+
+class Editorial {
+    - nombre : String
+    - pais : String
+    - listaLibrosPublicados : ArrayList<Libro>
+    --
+    + Editorial(nombre : String, pais : String)
+    + anyadirLibro(libro : Libro) : void
+    + borrarLibro(libro : Libro) : void
+}
+
+' Relaciones
+Estudiante "1" -- "0..*" Libro : presta >
+Prestamo "1" --> "1" Libro
+Prestamo "1" --> "1" Estudiante
+Editorial "1" o--> "0..*" Libro : publica >
+}
+
+@enduml
