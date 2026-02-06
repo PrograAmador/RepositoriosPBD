@@ -2,31 +2,26 @@ package FormigueroRebelion;
 
 public class Empleado {
     static final String[] CARGOS = {"director", "técnico", "presentador", "colaborador"};
+    static int contadorId = 1;
 
     private String id;
     private String nombre;
     private String cargo;
     private Empleado director;
 
-    public Empleado(String id, String nombre, String cargo, Empleado director) {
-        this.id = id;
+    public Empleado(String nombre, String cargo, Empleado director) {
+        this.id = setId();
         this.nombre = nombre;
-        this.cargo = cargo;
-        this.director = director;
-    }
-    public void comprobarCargo(Empleado director) {
-        if(this.cargo.equals("director")) {
-            this.director = director;
-        }else{
-            this.director = null;
-        }
+        this.cargo = setCargo(cargo);
+        this.director = setDirector(director);
     }
 
     public String getId() {
         return id;
     }
-    public void setId(String id) {
-        this.id = id;
+    public String setId() {
+        return this.id = "EP0" + contadorId++;
+
     }
     public String getNombre() {
         return nombre;
@@ -37,21 +32,24 @@ public class Empleado {
     public String getCargo() {
         return cargo;
     }
-    public void setCargo(String cargo) {
+    public String setCargo(String cargo) {
+
         for(String c : CARGOS) {
             if(c.equals(cargo)) {
-                this.cargo = cargo;
-                return;
-            }else{
-                this.cargo = "pte";
+                return cargo;
             }
         }
+        return "pte";
     }
     public Empleado getDirector() {
         return director;
     }
-    public void setDirector(Empleado director) {
-        this.director = director;
+    public Empleado setDirector(Empleado director) {
+        if(this.cargo.equals("director")) {
+            return null;
+        }else{
+            return director;
+        }
     }
 
 }

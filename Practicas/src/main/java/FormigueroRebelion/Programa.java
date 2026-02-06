@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Programa {
 
     private String nombre;
-    private int temporadas = 0;
+    private int temporadas;
     private Cadena cadena;
     private ArrayList<Empleado> listaEmpleados;
     private ArrayList<Invitado> listaInvitados;
@@ -14,10 +14,13 @@ public class Programa {
 
     public Programa(String nombre, Cadena cadena, Empleado director) {
         this.nombre = nombre;
+        this.temporadas = 0;
         this.cadena = cadena;
         this.listaEmpleados = new ArrayList<>();
         this.listaInvitados = new ArrayList<>();
         this.director = director;
+        this.listaEmpleados.add(director);
+        cadena.agregarPrograma(this);
     }
     public void invitadosTemporada(int temporada) {
         int contador = 0;

@@ -1,0 +1,90 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package FormigueroRebelion {
+
+
+class Cadena {
+  -nombre : String
+  -listaProgramas : ArrayList<Programa>
+
+  +Cadena(nombre : String)
+  +agregarPrograma(programa : Programa) : void
+  +eliminarPrograma(programa : Programa) : void
+  +toString() : String
+}
+
+class Programa {
+  -nombre : String
+  -temporadas : int
+  -cadena : Cadena
+  -listaEmpleados : ArrayList<Empleado>
+  -listaInvitados : ArrayList<Invitado>
+  -director : Empleado
+
+  +Programa(nombre : String, cadena : Cadena, director : Empleado)
+  +invitadosTemporada(temporada : int) : void
+  +vecesInvitado(nombre : String) : int
+  +rastrearInvitado(nombre : String) : void
+  +buscarInvitado(nombre : String) : boolean
+  +invitadoAntes(nombre : String) : void
+  +insertarEmpleado(empleado : Empleado) : void
+  +insertarInvitado(invitado : Invitado) : void
+  +eliminarEmpleado(empleado : Empleado) : void
+  +eliminarInvitado(invitado : Invitado) : void
+  +toString() : String
+}
+
+class Empleado {
+  -id : String
+  -nombre : String
+  -cargo : String
+  -director : Empleado
+  {static} contadorId : int
+  {static} CARGOS : String[]
+
+  +Empleado(nombre : String, cargo : String, director : Empleado)
+  +getId() : String
+  +setId() : String
+  +getNombre() : String
+  +setNombre(nombre : String) : void
+  +getCargo() : String
+  +setCargo(cargo : String) : String
+  +getDirector() : Empleado
+  +setDirector(director : Empleado) : Empleado
+}
+
+class Invitado {
+  -nombre : String
+  -profesion : String
+  -fecha_visita : LocalDate
+  -temporada : int
+  -scanner : Scanner
+
+  +Invitado(nombre : String, profesion : String, temporada : int)
+  +getNombre() : String
+  +setNombre(nombre : String) : void
+  +getProfesion() : String
+  +setProfesion(profesion : String) : void
+  +getFecha_visita() : LocalDate
+  +setFecha_visita() : LocalDate
+  +getTemporada() : int
+  +setTemporada(temporada : int) : void
+  +toString() : String
+}
+
+' ---------------- RELACIONES ----------------
+
+Cadena "1" o-- "*" Programa : agrega >
+Programa "1" --> "1" Cadena : pertenece
+
+Programa "1" *-- "*" Empleado : contiene
+Programa "1" *-- "*" Invitado : contiene
+
+Programa "1" --> "1" Empleado : director
+Empleado "0..1" --> "1" Empleado : dirige
+
+
+
+}
+@enduml

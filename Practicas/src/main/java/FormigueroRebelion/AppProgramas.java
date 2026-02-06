@@ -5,8 +5,8 @@ public class AppProgramas {
 
         //creamos una cadena de tv
         Cadena antena3 = new Cadena("Antena 3");
-        Empleado Director1 = new Empleado("D1","Director1","director",null);
-        Empleado Tecnico1 = new Empleado("T1","Tecnico1","técnico",Director1);
+        Empleado Director1 = new Empleado("Director1","director",null);
+        Empleado Tecnico1 = new Empleado("Tecnico1","técnico",Director1);
         System.out.println(antena3);
         //creamos un programa
         Programa el_hormiguero = new Programa("El Hormiguero",antena3,Director1);
