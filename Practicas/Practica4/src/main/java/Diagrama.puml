@@ -1,0 +1,71 @@
+@startuml
+
+' =========================
+' Clase abstracta
+' =========================
+abstract class MetodoPago {
+    +procesarPago(importe : double) : void
+}
+
+' =========================
+' TarjetaCredito
+' =========================
+class TarjetaCredito {
+    -nro_tarjeta : String
+    -tipo : String
+    {static} -tipos_validos : String[]
+
+    +TarjetaCredito(nro_tarjeta : String, tipo : String)
+    +procesarPago(importe : double) : void
+    +validarTarjeta() : boolean
+}
+
+' =========================
+' Paypal
+' =========================
+class Paypal {
+    -cuenta : String
+    -saldo : double
+
+    +Paypal(cuenta : String)
+    +validarPaypal(importe : double) : boolean
+    +procesarPago(importe : double) : void
+    +toString() : String
+}
+
+' =========================
+' Bizum
+' =========================
+class Bizum {
+    -telefono : String
+    -pin : int
+    {static} -random : Random
+
+    +Bizum(telefono : String)
+    +generarPIN() : int
+    +validarBizum(pinIngresado : int) : boolean
+    +procesarPago(importe : double) : void
+    +toString() : String
+}
+
+' =========================
+' Tienda
+' =========================
+class Tienda {
+    {static} -sc : Scanner
+
+    +iniciarPago() : void
+    +realizarPago(metodo : MetodoPago, importe : double) : void
+}
+
+' =========================
+' Relaciones
+' =========================
+MetodoPago <|-- TarjetaCredito
+MetodoPago <|-- Paypal
+MetodoPago <|-- Bizum
+
+Tienda ..> MetodoPago : usa
+
+
+@enduml
