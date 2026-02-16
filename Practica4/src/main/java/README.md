@@ -301,4 +301,3 @@ Es una práctica ideal para consolidar:
 
 ---
 
-Si quieres, puedo generarte una versión más técnica (nivel memoria de proyecto) o una versión más simple para entregar como práctica de clase.
