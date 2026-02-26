@@ -4,7 +4,7 @@
 
 ## 📌 1. Descripción General del Proyecto
 
-El siguiente codigo representa el comportamiento de un equipo de futbol ,**Mutxamel FC**, y su respectivo app de mantenimiento para poder añadir jugadores.
+El siguiente codigo representa el comportamiento de un equipo de futbol ,**Mutxamel FC**, y su respectiva app de mantenimiento para poder añadir jugadores.
 
 El sistema permite:
 
@@ -118,7 +118,7 @@ public void setDorsal(int dorsal)
 
 ---
 
-### ✅ Excepciones Personalizadas
+### Excepciones Personalizadas
 
 Se implementa la excepción:
 
