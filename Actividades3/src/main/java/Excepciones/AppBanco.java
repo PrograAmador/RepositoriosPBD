@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.Scanner;
 
 public class AppBanco {
+
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
 
