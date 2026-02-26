@@ -43,7 +43,7 @@ El proyecto está compuesto por las siguientes clases, interfaces y enumeracione
 
 ## 🧠 3. Conceptos de Programación Orientada a Objetos Aplicados
 
-### ✅ Herencia
+### Herencia
 
 La clase base `MutxamelFC` contiene atributos comunes como:
 
@@ -61,7 +61,7 @@ Esto permite reutilización de código y jerarquía estructurada.
 
 ---
 
-### ✅ Polimorfismo
+### Polimorfismo
 
 Se utiliza polimorfismo cuando se recorren listas de tipo:
 
@@ -83,7 +83,7 @@ if (integrante instanceof Jugador j)
 
 ---
 
-### ✅ Interfaces
+### Interfaces
 
 La interfaz `AccionesDeportivas` define:
 
@@ -101,7 +101,7 @@ Esto obliga a ambas clases a definir estas acciones deportivas.
 
 ---
 
-### ✅ Encapsulamiento
+### Encapsulamiento
 
 Se aplican:
 
