@@ -4,9 +4,9 @@
 
 ## 📌 1. Descripción General del Proyecto
 
-El siguiente codigo representa el comportamiento de un equipo de futbol ,**Mutxamel FC**, y su respectiva app de mantenimiento para poder añadir jugadores.
+El siguiente codigo representa el comportamiento de un equipo de futbol ,**Mutxamel FC** , y su respectiva app de mantenimiento para poder añadir jugadores.
 
-El sistema permite:
+"El sistema permite:"
 
 * Representar los distintos integrantes del club.
 * Gestionar jugadores mediante una aplicación de mantenimiento.
