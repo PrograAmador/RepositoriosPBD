@@ -20,34 +20,42 @@ public class AppMantenimiento {
         jugadores.add(new Jugador("Pedro", 14, Equipos.JUVENIL, 8, Posiciones.CENTROCAMPISTA));
         jugadores.add(new Jugador("Luis", 12, Equipos.CADETE, 5, Posiciones.DEFENSA));
 
-        menu();
-        if(pedirOpcion().equals("1")) {
-            mantenimientoJugadores();
-            switch (pedirOpcion()) {
-                case "1":
-                    jugadores.add(anyadirJugador());
-                    break;
-                case "2":
-                    System.out.println("===Mantenimiento de jugadores. Modificar datos de jugador existente ===");
-                    System.out.println("¿De que jugador quieres hacer cambios?");
-                    for (int i = 0; i < jugadores.size(); i++) {
-                        System.out.println("[" + i + ", " + jugadores.get(i) + "]. ");
-                    }
-                    modificarJugador(jugadores, Integer.parseInt(pedirOpcion()));
-                    break;
-                case "3":
-                    acompañantes.add(crearAcompanyante(jugadores));
-                    break;
-                case "X":
-                    menu();
-                    break;
-                default:
-                    System.out.println("Opción no válida. Volviendo al menú principal.");
-                    menu();
+        String opcion;
+
+        do {
+            menu();
+            opcion = pedirOpcion();
+            if (opcion.equals("1")) {
+                mantenimientoJugadores();
+                switch (pedirOpcion()) {
+                    case "1":
+                        Jugador nuevoJugador = anyadirJugador();
+                        jugadores.add(nuevoJugador);
+                        break;
+                    case "2":
+                        System.out.println("===Mantenimiento de jugadores. Modificar datos de jugador existente ===");
+                        System.out.println("¿De que jugador quieres hacer cambios?");
+                        for (int i = 0; i < jugadores.size(); i++) {
+                            System.out.println("[" + i + ", " + jugadores.get(i) + "]. ");
+                        }
+                        modificarJugador(jugadores, Integer.parseInt(pedirOpcion()));
+                        break;
+                    case "3":
+                        acompañantes.add(crearAcompanyante(jugadores));
+                        break;
+                    case "X":
+                        menu();
+                        break;
+                    default:
+                        System.out.println("Opción no válida. Volviendo al menú principal.");
+                        menu();
+                }
+            } else {
+                System.out.println("Funcion no disponible por el momento.");
             }
-        }else{
-            System.out.println("¡Hasta luego!");
-        }
+        } while (!opcion.equalsIgnoreCase("X"));
+
+        System.out.println("Gracias por usar la aplicación de mantenimiento del MUTXAMEL FC. ¡Hasta pronto!");
 
     }
 

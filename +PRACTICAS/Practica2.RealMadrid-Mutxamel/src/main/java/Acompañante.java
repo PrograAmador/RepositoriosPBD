@@ -53,5 +53,15 @@ public class Acompañante extends MutxamelFC{
     public void celebrarGol() {
         System.out.println("GOOOOOOL!!!!!!!!!!GOLGOLGOLGOLGOLGOLGOLGOL! " + super.getNombre() + " celebra el gol de su equipo");
     }
+
+    @Override
+    public String toString() {
+        return "[" +
+                "nombre='" + super.getNombre() + '\'' +
+                ", edad=" + super.getEdad() +
+                ", integrante=" + integrante.getNombre() +
+                ", parentesco='" + parentesco + '\'' +
+                ']';
+    }
 }
 
