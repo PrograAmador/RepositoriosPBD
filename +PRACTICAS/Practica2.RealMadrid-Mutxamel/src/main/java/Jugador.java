@@ -30,6 +30,7 @@ public class Jugador extends MutxamelFC implements AccionesDeportivas{
         System.out.println("El jugador " + getNombre() + " está calentando.");
 
     }
+
     public void descansar(){
         System.out.println("El jugador " + getNombre() + " está descansando.");
     }

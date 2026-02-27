@@ -8,14 +8,15 @@ import java.util.Scanner;
 public class AppMantenimiento {
 
     static Scanner sc = new Scanner(System.in);
-
+    static ArrayList<Jugador> jugadores = new ArrayList<>(10);
+    static ArrayList<Acompañante> acompañantes = new ArrayList<>(5);
     /**
-     * Metodo principal de la aplicación. Aquí se inicializan los jugadores y se muestra el menú principal para realizar las diferentes acciones de mantenimiento.
+     * Metodo principal de la aplicación. Aquí se muestra el menú principal para realizar las diferentes acciones de mantenimiento.
      * @param args
      */
     public static void main(String[] args) {
-        ArrayList<Jugador> jugadores = new ArrayList<>(10);
-        ArrayList<Acompañante> acompañantes = new ArrayList<>(5);
+
+
         jugadores.add(new Jugador("Juan", 25, Equipos.SENIOR, 12, Posiciones.DELANTERO));
         jugadores.add(new Jugador("Pedro", 14, Equipos.JUVENIL, 8, Posiciones.CENTROCAMPISTA));
         jugadores.add(new Jugador("Luis", 12, Equipos.CADETE, 5, Posiciones.DEFENSA));
@@ -31,7 +32,8 @@ public class AppMantenimiento {
                     case "1":
                         Jugador nuevoJugador = anyadirJugador();
                         jugadores.add(nuevoJugador);
-                        System.out.println("Estos son los jugadores: --> " + jugadores);
+                        System.out.println("Estos son los jugadores: --> " );
+                        jugadores.forEach(System.out::println); //Queria imprimir las listas para que se viesen los cambios realizados, pero no se veian bien, asi que al final le pregunte al chatgpt y me ha dicho esta opcion que esta bastente chula pa imprimir los Arraylist
                         break;
                     case "2":
                         System.out.println("===Mantenimiento de jugadores. Modificar datos de jugador existente ===");
@@ -39,13 +41,15 @@ public class AppMantenimiento {
                         for (int i = 0; i < jugadores.size(); i++) {
                             System.out.println("[" + i + ", " + jugadores.get(i) + "]. ");
                         }
-                        modificarJugador(jugadores, Integer.parseInt(pedirOpcion()));
-                        System.out.println("Estos son los jugadores modificados: --> " + jugadores);
+                        modificarJugador(Integer.parseInt(pedirOpcion()));
+                        System.out.println("Estos son los jugadores modificados: --> ");
+                        jugadores.forEach(System.out::println);
                         break;
                     case "3":
                         Acompañante nuevoAcompañante = crearAcompanyante(jugadores);
                         acompañantes.add(nuevoAcompañante);
-                        System.out.println("Estos son los acompañantes: --> " + acompañantes);
+                        System.out.println("Estos son los acompañantes: --> ");
+                        jugadores.forEach(System.out::println);
                         break;
                     case "X":
                         menu();
@@ -68,6 +72,7 @@ public class AppMantenimiento {
      *
      */
     public static void menu() {
+        System.out.println("                                         ");
         System.out.println("===App de Mantenimiento del MUTXAMEL FC===");
 
         System.out.println("[1]. Mantenimiento de jugadores");
@@ -109,7 +114,7 @@ public class AppMantenimiento {
      * Metodo para añadir un nuevo jugador al equipo. Se pide al usuario que introduzca los datos del jugador, como su nombre, edad, categoría, dorsal y posición, y se crea un nuevo objeto Jugador con esos datos.
      * @return El nuevo jugador creado con los datos introducidos por el usuario.
      */
-    public static Jugador anyadirJugador(){
+    public static Jugador anyadirJugador() {
         System.out.println("===Mantenimiento de jugadores. Añadir jugador ===");
         System.out.println("Introduce a continuacion los datos del jugador: ");
         System.out.println("Nombre: ");
@@ -123,6 +128,7 @@ public class AppMantenimiento {
         System.out.println("Dorsal: ");
         int dorsal = sc.nextInt();
         sc.nextLine(); // Limpiar el buffer
+        comprobadorDorsales(dorsal, categoriaStr);
         System.out.println("Posición (PORTERO, DEFENSOR, CENTROCAMPISTA, DELANTERO): ");
         String posicionStr = sc.nextLine();
         Posiciones posicion = Posiciones.valueOf(posicionStr.toUpperCase());
@@ -133,10 +139,9 @@ public class AppMantenimiento {
 
     /**
      * Metodo para modificar los datos de un jugador existente. Se muestra una lista de los jugadores disponibles y se pide al usuario que elija uno para modificar. Luego se pregunta qué dato quiere modificar (nombre, edad, categoría, dorsal o posición) y se actualiza el jugador con el nuevo dato introducido por el usuario.
-     * @param jugadores La lista de jugadores disponibles para modificar.
      * @param opcion La opción elegida por el usuario para modificar un jugador específico.
      */
-    public static void modificarJugador(ArrayList<Jugador> jugadores, int opcion) {
+    public static void modificarJugador(int opcion) {
         if (opcion < 0 || opcion >= jugadores.size()) {
             System.out.println("Opcion no válida.");
             return;
@@ -167,11 +172,7 @@ public class AppMantenimiento {
                     System.out.println("Nuevo dorsal --->  ");
                     int dorsal = sc.nextInt();
                     sc.nextLine(); // Limpiar el buffer
-                    for(Jugador jugador : jugadores) {
-                        if(jugador.getDorsal() == dorsal ) {
-                            throw new DorsalNoDisponible();
-                        }
-                    }
+                    comprobadorDorsales(dorsal, j.getCategoria().toString());
                     j.setDorsal(dorsal);
                     sc.nextLine(); // Limpiar el buffer
                     break;
@@ -222,6 +223,13 @@ public class AppMantenimiento {
         Acompañante acompañante = new Acompañante(nombre, edad, jugador, parentesco);
         System.out.println("Acompañante creado con éxito! --> " + acompañante);
         return acompañante;
+    }
+    public static void comprobadorDorsales(int dorsal, String categoria) {
+        for(Jugador jugador : jugadores) {
+            if(jugador.getDorsal() == dorsal && jugador.getCategoria().toString().equalsIgnoreCase(categoria)) {
+                throw new DorsalNoDisponible();
+            }
+        }
     }
 
 

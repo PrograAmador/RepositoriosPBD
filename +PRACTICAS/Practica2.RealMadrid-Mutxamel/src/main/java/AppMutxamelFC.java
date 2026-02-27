@@ -21,7 +21,7 @@ public class AppMutxamelFC {
         integrantesEquipo.add(jugador4);
         integrantesEquipo.add(jugador5);
 
-        Entrenador entrenador = new Entrenador("Sergio", 45, Equipos.SENIOR);
+        Entrenador entrenador = new Entrenador("Sergio", 45, Equipos.SENIOR, "4-3-3N");
         integrantesEquipo.add(entrenador);
 
         Masajista masajista1 = new Masajista("Ana", 35, "Fisioterapia Deportiva", 10);
