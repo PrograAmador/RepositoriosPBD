@@ -13,9 +13,10 @@ public class Entrenador extends MutxamelFC implements AccionesDeportivas{
      * @param edad
      * @param equipo
      */
-    public Entrenador(String nombre, int edad, Equipos equipo) {
+    public Entrenador(String nombre, int edad, Equipos equipo, String formacionPreferida) {
         super(nombre, edad);
         this.equipo = equipo;
+        setFormacionPreferida(formacionPreferida);
     }
 
     /**
@@ -44,7 +45,11 @@ public class Entrenador extends MutxamelFC implements AccionesDeportivas{
     }
 
     public void setFormacionPreferida(String formacionPreferida) {
+        if(formacionPreferida.matches("\\d-\\d-\\d")) {
                 this.formacionPreferida = formacionPreferida;
+        } else {
+            throw new FormatoFormacionIncorrecto();
+        }
     }
 
     @Override

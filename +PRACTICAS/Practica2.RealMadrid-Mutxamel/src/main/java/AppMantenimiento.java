@@ -31,6 +31,7 @@ public class AppMantenimiento {
                     case "1":
                         Jugador nuevoJugador = anyadirJugador();
                         jugadores.add(nuevoJugador);
+                        System.out.println("Estos son los jugadores: --> " + jugadores);
                         break;
                     case "2":
                         System.out.println("===Mantenimiento de jugadores. Modificar datos de jugador existente ===");
@@ -39,9 +40,12 @@ public class AppMantenimiento {
                             System.out.println("[" + i + ", " + jugadores.get(i) + "]. ");
                         }
                         modificarJugador(jugadores, Integer.parseInt(pedirOpcion()));
+                        System.out.println("Estos son los jugadores modificados: --> " + jugadores);
                         break;
                     case "3":
-                        acompañantes.add(crearAcompanyante(jugadores));
+                        Acompañante nuevoAcompañante = crearAcompanyante(jugadores);
+                        acompañantes.add(nuevoAcompañante);
+                        System.out.println("Estos son los acompañantes: --> " + acompañantes);
                         break;
                     case "X":
                         menu();
