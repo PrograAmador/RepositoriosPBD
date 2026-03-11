@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import javax.management.QueryEval;
+import java.util.*;
 
 /**
  * App de mantenimiento del MUTXAMEL FC. En esta aplicación se podrá añadir jugadores, modificar sus datos y crear acompañantes (solo para jugadores senior).
@@ -231,6 +231,8 @@ public class AppMantenimiento {
             }
         }
     }
+
+
 
 
 }
