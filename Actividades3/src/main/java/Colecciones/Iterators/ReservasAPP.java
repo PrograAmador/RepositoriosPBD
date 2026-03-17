@@ -17,7 +17,7 @@ public class ReservasAPP {
                     System.out.println("Introduce el usuario:");
                     Usuario usuario = new Usuario(sc.nextLine(), 11);
                     System.out.println("Introduce la pista: ");
-                    ç
+
             }
         }
 
